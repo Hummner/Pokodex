@@ -2,4 +2,66 @@ main {
     display:flex;
     flex: 1;
     background-color: #091A33;
+    font-family: Open-Sans;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.small-box {
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(135deg, rgb(40, 107, 40), rgb(153, 226, 153));
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    box-shadow: inset 0px 0px 8px 0px black;
+    color: white;
+}
+
+.id-number {
+    height: 24px;
+    text-align: right;
+    width: 100%;
+}
+
+.name {
+    height: 32px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.pokemon-type {
+    display: flex;
+    flex: 1;
+}
+
+.types {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.types span {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.349);
+}
+
+.pokemon-small-img {
+    object-fit: contain;
+    width: 70%;
+}
+
+
+@media(max-width: 400px) {
+    .small-box {
+        width: 200px;
+        height: 200px;
+    }
 }
