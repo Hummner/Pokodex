@@ -1,24 +1,42 @@
 // name, type, id, img
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon"
 
 
 function init() {
-    loadData(path="")
+    getPokemons();
+    
 
 }
 
-let array = [];
+let pokemons = [];
 
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+function renderPokemons() {
+    let contentRef = document.getElementById("content");
+    contentRef.innerHTML = "";
 
-
- async function loadData(path="") {
-    let response = await fetch(BASE_URL + path)
-    let responseJSON =  await response.json();
-
-    for (let index = 0; index < 20; index++) {
-        array.push(responseJSON[index]);
+    for (let indexPokemon = 0; indexPokemon < pokemons.length; indexPokemon++) {
+        contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
+    }
         
+}
+
+
+async function getPokemons() {
+    
+
+    for (let indexID = 1; indexID < 21; indexID++) {
+         let pokemonData = await loadData(indexID);
+         pokemons.push(pokemonData);
     }
 
-    console.log(array)
+    console.log(pokemons)
+    renderPokemons();
+}
+
+ async function loadData(path="") {
+    let response = await fetch(BASE_URL + "/" + path)
+    let responseJSON =  await response.json();
+    return responseJSON
+
+   
 }
