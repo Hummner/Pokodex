@@ -6,6 +6,32 @@ main {
     justify-content: center;
 }
 
+/* Loading Screen */
+
+#loader {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .spinner {
+    animation: spin 1s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  
+
+
+  /* Content */
+
 .content {
     display: flex;
     justify-content: center;

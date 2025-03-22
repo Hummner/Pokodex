@@ -1,6 +1,7 @@
 // name, type, id, img
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 let pokemons = [];
+let pokemonQuantity = 20;
 
 console.log(pokemons);
 
@@ -13,11 +14,11 @@ function init() {
 
 
 
-function renderPokemons() {
+function renderPokemons(pokemonQuantity) {
     let contentRef = document.getElementById("content");
     contentRef.innerHTML = "";
 
-    for (let indexPokemon = 0; indexPokemon < pokemons.length; indexPokemon++) {
+    for (let indexPokemon = 0; indexPokemon < pokemonQuantity; indexPokemon++) {
 
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
@@ -42,22 +43,27 @@ function renderBackgroundColor(indexPokemon, indexType) {
 
     let type = pokemons[indexPokemon].types[indexType].type.name;
     if (type == "fire") {
-        smallBoxRef.style.background = "linear-gradient(135deg, rgb(107, 59, 40), rgb(226, 174, 153)"
-    }
+        smallBoxRef.style.background = "linear-gradient(135deg, rgb(107, 40, 40), rgb(226, 170, 153)"
+    } else if (type == "water" ) {
+        smallBoxRef.style.background = "linear-gradient(135deg, rgb(40, 88, 107), rgb(153, 203, 226)"
+    } else if (type == "bug") {
+        smallBoxRef.style.background = "linear-gradient(135deg, rgb(107, 86, 40), rgb(226, 206, 153)"
+    } else if (type == "normal") {
+        smallBoxRef.style.background = "linear-gradient(135deg, rgb(131, 129, 20), rgb(229, 228, 156)"
+    } 
 }
 
 
 
 async function getPokemons() {
     
-
     for (let indexID = 1; indexID < 21; indexID++) {
          let pokemonData = await loadData(indexID);
          pokemons.push(pokemonData);
     }
 
     console.log(pokemons)
-    renderPokemons();
+    renderPokemons(pokemonQuantity);
 }
 
  async function loadData(path="") {
