@@ -8,3 +8,8 @@
     src: url(./Open_Sans/static/OpenSans-Bold.ttf);
     font-family: bold;
 }
+
+@font-face {
+    font-family: Boldonse;
+    src: url(./Boldonse/Boldonse-Regular.ttf);
+}

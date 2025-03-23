@@ -8,17 +8,25 @@ console.log(pokemons);
 
 function init() {
     getPokemons();
-    
-
 }
 
-
-
-function renderPokemons(pokemonQuantity) {
+function renderPokemons() {
     let contentRef = document.getElementById("content");
+    let morePokemonBtn = document.getElementById("more_pokemon_btn")
     contentRef.innerHTML = "";
 
-    for (let indexPokemon = 0; indexPokemon < pokemonQuantity; indexPokemon++) {
+    for (let indexPokemon = 0; indexPokemon < 20; indexPokemon++) {
+
+        contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
+        renderTypes(indexPokemon);
+    }
+    morePokemonBtn.innerHTML = `<button onclick="renderMorePokemons()" class="more-button">More Pokemon</button>`;
+}
+
+function renderMorePokemons() {
+    let contentRef = document.getElementById("content");
+
+    for (let indexPokemon = 20; indexPokemon < 40; indexPokemon++) {
 
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
@@ -33,10 +41,7 @@ function renderTypes(indexPokemon) {
         typesRef.innerHTML += getTypesTemplate(indexPokemon, indexType);
         renderBackgroundColor(indexPokemon, indexType)
     }
-
-    
 }
-
 
 function renderBackgroundColor(indexPokemon, indexType) {
     let smallBoxRef = document.getElementById("small_box_" + indexPokemon)
@@ -57,7 +62,7 @@ function renderBackgroundColor(indexPokemon, indexType) {
 
 async function getPokemons() {
     
-    for (let indexID = 1; indexID < 21; indexID++) {
+    for (let indexID = 1; indexID < 41; indexID++) {
          let pokemonData = await loadData(indexID);
          pokemons.push(pokemonData);
     }
@@ -67,9 +72,45 @@ async function getPokemons() {
 }
 
  async function loadData(path="") {
-    let response = await fetch(BASE_URL + "/" + path)
+    let response = await fetch(BASE_URL + "/" + path);
     let responseJSON =  await response.json();
-    return responseJSON
+    return responseJSON;
+}
 
+
+function showDialog(indexPokemon) {
+    let overlayRef = document.getElementById("overlay")
+    overlayRef.classList.toggle("d_none");
+    dialogNavbar(indexPokemon)
+    
+}
+
+function dialogNavbar(indexPokemon) {
+    let dialogNavbarRef = document.getElementById("overlay_nav");
+    dialogNavbarRef.innerHTML = getDialogNavbarTemplate(indexPokemon);
+    showAbout(indexPokemon)
+} 
+
+function showAbout(indexPokemon) {
+    let detailsRef = document.getElementById("details");
+    detailsRef.innerHTML = getShowAboutTemplate(indexPokemon);
+    showAboutAbilities(indexPokemon);
+}
+
+function showAboutAbilities(indexPokemon) {
+    let abilitiesRef = document.getElementById("abilities_" + indexPokemon);
+    let abilitiesArray = [];
    
+    for (let indexAbillity = 0; indexAbillity < pokemons[indexPokemon].abilities.length; indexAbillity++) {
+        abilitiesArray.push(pokemons[indexPokemon].abilities[indexAbillity].ability.name);
+    }
+    const capitalize = abilitiesArray.map((item) => {
+        return item[0].toUpperCase() + item.slice(1).toLocaleLowerCase();
+    });
+    abilitiesRef.innerHTML = capitalize.join(", ");
+}
+
+
+function showBasestats(indexPokemon) {
+    
 }

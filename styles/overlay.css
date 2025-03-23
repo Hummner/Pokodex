@@ -1,0 +1,119 @@
+.overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.overlay-dialog {
+    height: 640px;
+    width: 400px;
+    background-color: rgb(161, 161, 161);
+    border-radius: 24px;
+    position: relative;
+    border: 2px solid black;
+}
+
+
+.overlay-stats {
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    border-radius: 24px;
+    position: absolute;
+    bottom: 0;
+    border: 2px solid black;
+}
+
+.overlay-nav {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px 0 8px;
+    color: #091A33;
+}
+
+.overlay-nav span:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    height: 240px;
+    border: 2px solid black;
+}
+
+.details table tr td {
+    padding-top: 16px;
+}
+
+.details table tr td:first-child {
+    padding-right: 64px;
+    font-weight: bold;
+}
+
+.d_none {
+    display: none !important;
+}
+
+.overlay-img {
+    height: 248px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: linear-gradient(135deg, rgb(40, 107, 40), rgb(153, 226, 153));
+    position: relative;
+    border-radius: 24px 24px 0 0;
+}
+
+.overlay-img img {
+    object-fit: contain;
+    width: 200px;
+    z-index: 10;
+}
+
+.overlay-img span {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 80px;
+    opacity: 0.2;
+    rotate: -20deg;
+    font-family: Boldonse;
+}
+
+.pokemon-icon {
+    position: absolute;
+    right: 0px;
+    bottom: -16;
+    width: 50px;
+}
+
+.pokemon-icon img {
+    width: 50px;
+    opacity: 0.2;
+}
+
+.close-icon {
+    position: absolute;
+    top: 24px;
+    right:24px;
+    width: 32px;
+    z-index: 11;
+}
+
+
+

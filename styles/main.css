@@ -41,7 +41,9 @@ main {
 
 .container {
     display: flex;
-    max-width: 1820px;
+    max-width: 1920px;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -101,6 +103,24 @@ main {
     width: 200px;
     height: 200px;
     object-position: bottom;
+}
+
+.more-button {
+    background-color: #2d5da5;
+    padding: 16px;
+    color: white;
+    border-radius: 16px;
+    font-size: 24px;
+    margin: 16px;
+    border: none;
+}
+
+.more-button:hover {
+    background-color: #688cc2;
+}
+
+.uppercase::first-letter {
+    text-transform: uppercase !important;
 }
 
 
