@@ -79,9 +79,15 @@ async function getPokemons() {
 
 
 function showDialog(indexPokemon) {
-    let overlayRef = document.getElementById("overlay")
+    let overlayRef = document.getElementById("overlay");
+    let overlayImgRef = document.getElementById("overlay_pokemon_img");
+    let overlayIdNumberRef = document.getElementById("overlay_id_number");
+    let noScrollBody = document.getElementById("body");
     overlayRef.classList.toggle("d_none");
-    dialogNavbar(indexPokemon)
+    overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
+    overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
+    dialogNavbar(indexPokemon);
+    noScrollBody.classList.add("no-scrollbar");
     
 }
 
@@ -108,9 +114,58 @@ function showAboutAbilities(indexPokemon) {
         return item[0].toUpperCase() + item.slice(1).toLocaleLowerCase();
     });
     abilitiesRef.innerHTML = capitalize.join(", ");
+    showTheActiveDialog("about_btn");
 }
 
 
-function showBasestats(indexPokemon) {
-    
+function showBaseStats(indexPokemon) {
+    let detailsRef = document.getElementById("details");
+    detailsRef.innerHTML = "";
+    let baseStatsArray = [];
+
+    for (let indexBaseStat = 0; indexBaseStat < pokemons[indexPokemon].stats.length; indexBaseStat++) {
+        baseStatsArray.push(pokemons[indexPokemon].stats[indexBaseStat].base_stat)
+        
+    }
+    detailsRef.innerHTML = getShowBaseStatsTemplate(baseStatsArray);
+    showTheActiveDialog("base_btn");
+}
+
+function showCries(indexPokemon) {
+    let detailsRef = document.getElementById("details");
+    detailsRef.innerHTML = "";
+    detailsRef.innerHTML = showCriesTemplate(indexPokemon);
+    showTheActiveDialog("cries_btn");
+}
+
+function showShiny(indexPokemon) {
+    let detailsRef = document.getElementById("details");
+    detailsRef.innerHTML = getLoadingCircle();
+    detailsRef.innerHTML = getShinyTemplate(indexPokemon);
+    showTheActiveDialog("shiny_btn");
+}
+
+function closeOverlayWithoutBtn(){
+    let noScrollBody = document.getElementById("body");
+    noScrollBody.classList.remove("no-scrollbar");
+    document.getElementById("overlay").classList.add("d_none");
+}
+
+function closeOverlay() {
+    document.getElementById("overlay").classList.add("d_none");
+    let noScrollBody = document.getElementById("body");
+    noScrollBody.classList.remove("no-scrollbar");
+}
+
+function doNotCloseDialog(event) {
+    event.stopPropagation();
+}
+
+function showTheActiveDialog(active) {
+document.getElementById("about_btn").classList.remove("active");
+document.getElementById("base_btn").classList.remove("active");
+document.getElementById("cries_btn").classList.remove("active");
+document.getElementById("shiny_btn").classList.remove("active");
+document.getElementById(active).classList.add("active");
+
 }
