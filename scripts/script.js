@@ -2,6 +2,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 let pokemons = [];
 let pokemonQuantity = 20;
+let currentPokemonIndex = 0;
 
 console.log(pokemons);
 
@@ -88,6 +89,7 @@ function showDialog(indexPokemon) {
     overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
     dialogNavbar(indexPokemon);
     noScrollBody.classList.add("no-scrollbar");
+    currentPokemonIndex = indexPokemon;
     
 }
 
@@ -167,5 +169,29 @@ document.getElementById("base_btn").classList.remove("active");
 document.getElementById("cries_btn").classList.remove("active");
 document.getElementById("shiny_btn").classList.remove("active");
 document.getElementById(active).classList.add("active");
+}
 
+
+function nextPokemon() {
+    let indexPokemon = currentPokemonIndex;
+    indexPokemon++;
+    let overlayImgRef = document.getElementById("overlay_pokemon_img");
+    let overlayIdNumberRef = document.getElementById("overlay_id_number");
+
+    overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
+    overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
+    dialogNavbar(indexPokemon);
+    return currentPokemonIndex = indexPokemon;
+}
+
+function lastPokemon() {
+    let indexPokemon = currentPokemonIndex;
+    indexPokemon--;
+    let overlayImgRef = document.getElementById("overlay_pokemon_img");
+    let overlayIdNumberRef = document.getElementById("overlay_id_number");
+
+    overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
+    overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
+    dialogNavbar(indexPokemon);
+    return currentPokemonIndex = indexPokemon;
 }

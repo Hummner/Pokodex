@@ -68,7 +68,8 @@
 }
 
 .overlay-img {
-    height: 248px;
+    height: 264px;
+    border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: flex-end;
