@@ -1,7 +1,7 @@
 // name, type, id, img
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 let pokemons = [];
-let pokemonQuantity = 20;
+let maxPokemonQuantity = 20;
 let currentPokemonIndex = 0;
 
 console.log(pokemons);
@@ -16,22 +16,32 @@ function renderPokemons() {
     let morePokemonBtn = document.getElementById("more_pokemon_btn")
     contentRef.innerHTML = "";
 
-    for (let indexPokemon = 0; indexPokemon < 20; indexPokemon++) {
+    for (let indexPokemon = 0; indexPokemon < (maxPokemonQuantity); indexPokemon++) {
 
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
     }
-    morePokemonBtn.innerHTML = `<button onclick="renderMorePokemons()" class="more-button">More Pokemon</button>`;
+    morePokemonBtn.innerHTML = `<button id="more_pokemon" onclick="renderMorePokemons()" class="more-button">More Pokemon</button>`;
 }
 
 function renderMorePokemons() {
     let contentRef = document.getElementById("content");
-
-    for (let indexPokemon = 20; indexPokemon < 40; indexPokemon++) {
-
+    let loadingBtn = document.getElementById("more_pokemon");
+    loadingBtn.innerHTML = "Loading";
+    loadingBtn.disabled = true;
+    let morePokemons = maxPokemonQuantity + 20;
+    for (let indexPokemon = maxPokemonQuantity; indexPokemon < morePokemons; indexPokemon++) {
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
     }
+    if(morePokemons != 100) {
+        loadingBtn.innerHTML = "More Pokemon";
+        loadingBtn.disabled = false;
+    } else {
+        loadingBtn.classList.add("d_none");
+    }
+
+    return maxPokemonQuantity = morePokemons;
 }
 
 function renderTypes(indexPokemon) {
@@ -63,13 +73,13 @@ function renderBackgroundColor(indexPokemon, indexType) {
 
 async function getPokemons() {
     
-    for (let indexID = 1; indexID < 41; indexID++) {
+    for (let indexID = 1; indexID < 101; indexID++) {
          let pokemonData = await loadData(indexID);
          pokemons.push(pokemonData);
     }
 
     console.log(pokemons)
-    renderPokemons(pokemonQuantity);
+    renderPokemons();
 }
 
  async function loadData(path="") {
@@ -174,21 +184,35 @@ document.getElementById(active).classList.add("active");
 
 function nextPokemon() {
     let indexPokemon = currentPokemonIndex;
-    indexPokemon++;
     let overlayImgRef = document.getElementById("overlay_pokemon_img");
     let overlayIdNumberRef = document.getElementById("overlay_id_number");
+    
 
+    if (indexPokemon != (pokemons.length - 1)) {
+        indexPokemon++;
+    } else {
+        indexPokemon = 0;
+    }
     overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
     overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
     dialogNavbar(indexPokemon);
+
     return currentPokemonIndex = indexPokemon;
 }
 
 function lastPokemon() {
     let indexPokemon = currentPokemonIndex;
-    indexPokemon--;
+    
     let overlayImgRef = document.getElementById("overlay_pokemon_img");
     let overlayIdNumberRef = document.getElementById("overlay_id_number");
+
+        if (indexPokemon != 0) {
+            
+            indexPokemon--;
+        } else {
+            indexPokemon = (pokemons.length - 1);
+        }
+    
 
     overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
     overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
