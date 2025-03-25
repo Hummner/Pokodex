@@ -1,8 +1,9 @@
 // name, type, id, img
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 let pokemons = [];
-let maxPokemonQuantity = 20;
+let pokemonRenderStartindex = 0;
 let currentPokemonIndex = 0;
+let getPokemonDataFromServer = 20;
 
 console.log(pokemons);
 
@@ -16,12 +17,18 @@ function renderPokemons() {
     let morePokemonBtn = document.getElementById("more_pokemon_btn")
     contentRef.innerHTML = "";
 
-    for (let indexPokemon = 0; indexPokemon < (maxPokemonQuantity); indexPokemon++) {
+    for (let indexPokemon = 0; indexPokemon < 20; indexPokemon++) {
 
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
     }
-    morePokemonBtn.innerHTML = `<button id="more_pokemon" onclick="renderMorePokemons()" class="more-button">More Pokemon</button>`;
+    morePokemonBtn.innerHTML = `<button id="more_pokemon" onclick="getMoreDataFromServer()" class="more-button">More Pokemon</button>`;
+}
+
+function getMoreDataFromServer() {
+    let morePokemonData = getPokemonDataFromServer + 20;
+    let morePokemons = pokemonRenderStartindex + 20;
+    return getPokemonDataFromServer = morePokemonData, pokemonRenderStartindex = morePokemons, getPokemons();;
 }
 
 function renderMorePokemons() {
@@ -29,20 +36,22 @@ function renderMorePokemons() {
     let loadingBtn = document.getElementById("more_pokemon");
     loadingBtn.innerHTML = "Loading";
     loadingBtn.disabled = true;
-    let morePokemons = maxPokemonQuantity + 20;
-    for (let indexPokemon = maxPokemonQuantity; indexPokemon < morePokemons; indexPokemon++) {
+    for (let indexPokemon = pokemonRenderStartindex; indexPokemon < getPokemonDataFromServer; indexPokemon++) {
         contentRef.innerHTML += getSmallBoxTemplate(indexPokemon);
         renderTypes(indexPokemon);
     }
-    if(morePokemons != 100) {
+    renderMoreButton(loadingBtn);
+ 
+     return pokemonRenderStartindex, getPokemonDataFromServer ;
+}
+
+function renderMoreButton(loadingBtn) {
+    if(getPokemonDataFromServer != 100) {
         loadingBtn.innerHTML = "More Pokemon";
         loadingBtn.disabled = false;
     } else {
-        loadingBtn.classList.add("d_none");
+        loadingBtn.classList.add("d_none");}
     }
-
-    return maxPokemonQuantity = morePokemons;
-}
 
 function renderTypes(indexPokemon) {
     let typesRef = document.getElementById("types_" + indexPokemon);
@@ -73,13 +82,18 @@ function renderBackgroundColor(indexPokemon, indexType) {
 
 async function getPokemons() {
     
-    for (let indexID = 1; indexID < 101; indexID++) {
+    for (let indexID = (pokemonRenderStartindex + 1); indexID <= getPokemonDataFromServer; indexID++) {
          let pokemonData = await loadData(indexID);
          pokemons.push(pokemonData);
     }
 
+    if (pokemonRenderStartindex == 0) {
+        renderPokemons();
+    } else {
+        renderMorePokemons();
+    }
     console.log(pokemons)
-    renderPokemons();
+    
 }
 
  async function loadData(path="") {
@@ -94,6 +108,7 @@ function showDialog(indexPokemon) {
     let overlayImgRef = document.getElementById("overlay_pokemon_img");
     let overlayIdNumberRef = document.getElementById("overlay_id_number");
     let noScrollBody = document.getElementById("body");
+
     overlayRef.classList.toggle("d_none");
     overlayImgRef.src = pokemons[indexPokemon].sprites.other.dream_world.front_default;
     overlayIdNumberRef.innerHTML = "#" + pokemons[indexPokemon].id;
@@ -105,12 +120,14 @@ function showDialog(indexPokemon) {
 
 function dialogNavbar(indexPokemon) {
     let dialogNavbarRef = document.getElementById("overlay_nav");
+
     dialogNavbarRef.innerHTML = getDialogNavbarTemplate(indexPokemon);
     showAbout(indexPokemon)
 } 
 
 function showAbout(indexPokemon) {
     let detailsRef = document.getElementById("details");
+
     detailsRef.innerHTML = getShowAboutTemplate(indexPokemon);
     showAboutAbilities(indexPokemon);
 }
@@ -145,6 +162,7 @@ function showBaseStats(indexPokemon) {
 
 function showCries(indexPokemon) {
     let detailsRef = document.getElementById("details");
+
     detailsRef.innerHTML = "";
     detailsRef.innerHTML = showCriesTemplate(indexPokemon);
     showTheActiveDialog("cries_btn");
@@ -152,6 +170,7 @@ function showCries(indexPokemon) {
 
 function showShiny(indexPokemon) {
     let detailsRef = document.getElementById("details");
+
     detailsRef.innerHTML = getLoadingCircle();
     detailsRef.innerHTML = getShinyTemplate(indexPokemon);
     showTheActiveDialog("shiny_btn");
@@ -159,6 +178,7 @@ function showShiny(indexPokemon) {
 
 function closeOverlayWithoutBtn(){
     let noScrollBody = document.getElementById("body");
+    
     noScrollBody.classList.remove("no-scrollbar");
     document.getElementById("overlay").classList.add("d_none");
 }
