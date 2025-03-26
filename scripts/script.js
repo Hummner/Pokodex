@@ -100,8 +100,6 @@ async function getPokemons() {
     } else {
         renderMorePokemons();
     }
-    console.log(pokemons)
-
 }
 
 async function loadData(path = "") {

@@ -11,12 +11,18 @@ body {
 }
 
 header {
+    background-color: #122238;
+}
+
+.header-content {
     height: 144px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
     background-color: #122238;
+    max-width: 1920px;
+    margin: 0 auto 0;
 }
 
 header img {

@@ -27,9 +27,6 @@ main {
     100% { transform: rotate(360deg); }
   }
 
-  
-
-
   /* Content */
 
 .content {
@@ -45,7 +42,6 @@ main {
     flex-direction: column;
     align-items: center;
 }
-
 
 .small-box {
     width: 280px;
@@ -152,9 +148,6 @@ main {
 
 }
 
-
-
-
 @media(max-width: 530px) {
     .small-box {
         width: 180px;
@@ -176,7 +169,7 @@ main {
         margin-bottom: 24px;
     }
 
-    header {
+    .header-content {
         flex-direction: column;
         justify-content: center;
         padding-bottom: 24px;

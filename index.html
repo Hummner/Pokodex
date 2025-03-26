@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokodex</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo/logo_small.png">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/overlay.css">
@@ -15,14 +16,14 @@
 
 <body onload="init()" id="body">
     <header id="header">
+        <div class="header-content">
         <img src="./assets/logo/logo_big.png" alt="">
         <div class="search-section">
             <input oninput="searchPokemon()" id="search_pokemon_input" type="text" placeholder="Search Pokemon">
             <div id="user_search_feedback" class="user-search-feedback-container">
             </div>
-            
-            
         </div>
+    </div>
     </header>
     <main>
         <div id="container" class="container">
@@ -59,15 +60,11 @@
 
             </div>
             <div id="more_pokemon_btn">
-                
             </div>
         </div>
     </main>
     <footer>
-
-       
         <a href="#header"><img src="./assets/logo/logo_big.png" alt=""></a>
-       
     </footer>
 
 

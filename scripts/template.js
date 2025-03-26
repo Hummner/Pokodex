@@ -10,11 +10,9 @@ function getSmallBoxTemplate(indexPokemon) {
                 </div>`
 }
 
-
 function getTypesTemplate(indexPokemon, indexType) {
     return `<div class="uppercase"><span class="uppercase">${pokemons[indexPokemon].types[indexType].type.name}</span></div>`
 }
-
 
 function getDialogNavbarTemplate(indexPokemon) {
     return `<span id="about_btn" onclick="showAbout(${indexPokemon})">About</span>
@@ -22,7 +20,6 @@ function getDialogNavbarTemplate(indexPokemon) {
             <span id="cries_btn" onclick="showCries(${indexPokemon})">Cries</span>
             <span id="shiny_btn"onclick="showShiny(${indexPokemon})">Shiny</span>`
 }
-
 
 function getShowAboutTemplate(indexPokemon) {
     const weightInKG = pokemons[indexPokemon].weight / 10;
