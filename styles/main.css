@@ -146,6 +146,14 @@ main {
         width: 200px;
     }
 
+    .header-content {
+        padding: 0 24px;
+    }
+
+    footer img {
+        width: 200px;
+    }
+
 }
 
 @media(max-width: 530px) {
