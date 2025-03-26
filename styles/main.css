@@ -123,10 +123,62 @@ main {
     text-transform: uppercase !important;
 }
 
+.search-section {
+    display: flex;
+    flex-direction: column;
+}
 
-@media(max-width: 400px) {
-    .small-box {
+.search-section input {
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.min-req-char {
+    color: white;
+    min-width: 100px;
+    position: absolute;
+    top: 0px;
+}
+
+.user-search-feedback-container {
+    position: relative;
+    margin-top: 8px;
+}
+
+@media(max-width: 750px) {
+    header img {
         width: 200px;
-        height: 200px;
+    }
+
+}
+
+
+
+
+@media(max-width: 530px) {
+    .small-box {
+        width: 180px;
+        height: 180px;
+    }
+
+    .pokemon-small-img {
+        width: 120px;
+        height: 120px;
+        
+    }
+
+    .types span {
+        font-size: 12px;
+    }
+
+    header img {
+        width: 140px;
+        margin-bottom: 24px;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 24px;
     }
 }

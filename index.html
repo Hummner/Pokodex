@@ -14,9 +14,15 @@
 </head>
 
 <body onload="init()" id="body">
-    <header>
+    <header id="header">
         <img src="./assets/logo/logo_big.png" alt="">
-        <input type="text" placeholder="Search Pokemon">
+        <div class="search-section">
+            <input oninput="searchPokemon()" id="search_pokemon_input" type="text" placeholder="Search Pokemon">
+            <div id="user_search_feedback" class="user-search-feedback-container">
+            </div>
+            
+            
+        </div>
     </header>
     <main>
         <div id="container" class="container">
@@ -53,14 +59,15 @@
 
             </div>
             <div id="more_pokemon_btn">
+                
             </div>
         </div>
     </main>
     <footer>
 
-        <a href="">Impressum</a>
-        <img src="./assets/logo/logo_big.png" alt="">
-        <a href="">Policy</a>
+       
+        <a href="#header"><img src="./assets/logo/logo_big.png" alt=""></a>
+       
     </footer>
 
 

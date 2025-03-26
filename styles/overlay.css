@@ -48,7 +48,7 @@
 
 .details {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 24px;
     height: 240px;
@@ -98,7 +98,7 @@
 .pokemon-icon {
     position: absolute;
     right: 0px;
-    bottom: -16;
+    bottom: -64px;
     width: 50px;
 }
 
@@ -153,6 +153,14 @@
 .cries {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.overlay-shiny-img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .overlay-shiny-img img {
@@ -180,3 +188,55 @@ table {
     transform: none !important;
 }
 
+.max-progress {
+    position: absolute;
+    top: 112px;
+    right: 48px;
+    font-size: 12px;
+}
+
+
+@media(max-width: 530px) {
+    .overlay-dialog {
+        width: 250px;
+    }
+
+    .overlay-img img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .pokemon-icon {
+        display: none;
+    }
+
+    .overlay-stats {
+        width: 250px;
+    }
+
+    .overlay-nav {
+        font-size: 16px;
+    }
+
+    .details {
+        width: 250px;
+    }
+
+    progress {
+        inline-size: 80px;
+    }
+
+    audio {
+        width: 200px;
+    }
+
+    .overlay-shiny-img img {
+        width: 200px;
+        filter: drop-shadow(0px 8px 8px black);
+    }
+
+    .max-progress {
+        position: absolute;
+        top: 92px;
+    }
+}

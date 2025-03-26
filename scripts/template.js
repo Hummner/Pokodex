@@ -48,37 +48,37 @@ function getShowAboutTemplate(indexPokemon) {
 }
 
 function getShowBaseStatsTemplate(baseStatsArray) {
-    return `
+    return `<span class="max-progress">Max: 150</span>
             <table>
                 <tr>
                     <td>HP</td>
                     <td>${baseStatsArray[0]}</td>
-                    <td><progress id="file" value="${baseStatsArray[0]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[0]}" max="150"></progress></td>
                 </tr>
                 <tr>
                     <td>Attack</td>
                     <td>${baseStatsArray[1]}</td>
-                    <td><progress id="file" value="${baseStatsArray[1]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[1]}" max="150"></progress></td>
                 </tr>
                 <tr>
                     <td>Defense</td>
                     <td>${baseStatsArray[2]}</td>
-                    <td><progress id="file" value="${baseStatsArray[2]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[2]}" max="150"></progress></td>
                 </tr>
                  <tr>
                     <td>Special-Attack</td>
                     <td>${baseStatsArray[3]}</td>
-                    <td><progress id="file" value="${baseStatsArray[3]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[3]}" max="150"></progress></td>
                 </tr>
                  <tr>
                     <td>Special-Defense</td>
                     <td>${baseStatsArray[4]}</td>
-                    <td><progress id="file" value="${baseStatsArray[4]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[4]}" max="150"></progress></td>
                 </tr>
                 <tr>
                     <td>Speed</td>
                     <td>${baseStatsArray[5]}</td>
-                    <td><progress id="file" value="${baseStatsArray[5]}" max="100"></progress></td>
+                    <td><progress id="file" value="${baseStatsArray[5]}" max="150"></progress></td>
                 </tr>
             </table>`
 }
